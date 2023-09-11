@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="lab_sequence_db.sql" id="Project-5f2" database="Sqlite" >
+	<schema name="public" >
+		<table name="members" spec="" >
+			<column name="member_id" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="last_name" type="TEXT" jt="-1" mandatory="y" />
+			<column name="first_name" type="TEXT" jt="-1" mandatory="y" />
+			<index name="pk_members" unique="PRIMARY_KEY" >
+				<column name="member_id" />
+			</index>
+		</table>
+		<table name="plasmid_stock" spec="" >
+			<column name="plasmid_id" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="plasmid_name" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="member_id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="plasmid_sequence" type="VARCHAR" jt="12" />
+			<column name="description" type="TEXT" jt="-1" />
+			<index name="pk_plasmid_stock" unique="PRIMARY_KEY" >
+				<column name="plasmid_id" />
+			</index>
+			<fk name="Fk" to_schema="public" to_table="members" options="" >
+				<fk_column name="description" pk="member_id" />
+			</fk>
+		</table>
+		<table name="primers" spec="" >
+			<column name="primer_id" type="VARCHAR" length="255" jt="12" mandatory="y" />
+			<column name="primer_sequence" type="TEXT" jt="-1" mandatory="y" />
+			<column name="member_id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="description" type="TEXT" jt="-1" />
+			<index name="pk_primers" unique="PRIMARY_KEY" >
+				<column name="primer_id" />
+			</index>
+			<fk name="Fk" to_schema="public" to_table="members" options="" >
+				<fk_column name="description" pk="member_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Layout" id="Layout-1b23" show_relation="columns" >
+		<comment><![CDATA[Layout]]></comment>
+		<entity schema="public" name="members" color="BED3F4" x="96" y="48" />
+		<entity schema="public" name="plasmid_stock" color="BED3F4" x="304" y="48" />
+		<entity schema="public" name="primers" color="BED3F4" x="48" y="240" />
+		<form name="Report" id="Report-1deb" template="Page" css="container-fluid" view="frame" >
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2},{-2}}" scroll="n" html="n" />
+		</form>
+	</layout>
+</project>
