@@ -3,7 +3,7 @@
 CREATE TABLE members (
     member_id INTEGER PRIMARY KEY,
     last_name TEXT NOT NULL,
-    first_name TEXT NOT NULL,
+    first_name TEXT NOT NULL
 );
 
 CREATE TABLE plasmid_stock (
@@ -13,8 +13,8 @@ CREATE TABLE plasmid_stock (
     plasmid_sequence TEXT,
     description TEXT,
     FOREIGN KEY (member_id)
-        REFERENCES members (member_id),
-)
+        REFERENCES members (member_id)
+);
 
 CREATE TABLE primers (
     primer_id varchar(255) NOT NULL PRIMARY KEY,
@@ -22,6 +22,6 @@ CREATE TABLE primers (
     member_id int NOT NULL,
     description TEXT,
     FOREIGN KEY (member_id)
-        REFERENCES members (member_id),
-)
+        REFERENCES members (member_id)
+);
 
